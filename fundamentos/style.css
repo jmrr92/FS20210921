@@ -1,0 +1,29 @@
+.menu {
+  display: flex;
+  background-color: rgb(97, 151, 204);
+}
+
+menu.ul {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+menu.li {
+  float: left;
+  text-align: center;
+  width: 20em;
+}
+
+main {
+  display: flexbox;
+  background-color: coral;
+}
+
+footer{
+    float: right;
+    flex-wrap: wrap;
+}
