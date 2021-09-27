@@ -18,6 +18,7 @@
     "eslint-plugin-jasmine": "^4.1.2",
     "jasmine-browser-runner": "^0.8.0",
     "jasmine-core": "^3.9.0",
+    "jasmine-reporters": "^2.5.0",
     "karma": "^6.3.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.3",
