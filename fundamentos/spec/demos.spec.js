@@ -5,9 +5,22 @@ xdescribe("Demos de las pruebas", function () {
           let rslt;
 
           rslt = suma(a, b)
-          
+
           expect(rslt).toBe(4)
       })
+
+      it('suma negativo', function(){
+        let a = 2, b = -2;
+        let rslt;
+
+        rslt = suma(a, b)
+        
+        // expect(rslt).toBe(0)
+        // if(a!=2 || b!=2 || rslt ==0){
+        //     fail('No pasa...')
+        // }
+    })
+
   })
 
   it("Este funciona siempre", function () {

@@ -9,7 +9,6 @@ describe("Player", function() {
 
   it("should be able to play a Song", function() {
     player.play(song);
-
     expect(player.currentlyPlayingSong).toEqual(song);
 
     //demonstrates use of custom matcher
@@ -31,7 +30,6 @@ describe("Player", function() {
 
     it("should be possible to resume", function() {
       player.resume();
-
       expect(player.isPlaying).toBeTruthy();
       expect(player.currentlyPlayingSong).toEqual(song);
     });
