@@ -10,4 +10,8 @@ describe("Pruebas ejercicios", function () {
             else expect(false).not.toBeTruthy()
         })
     })
+
+    describe("Palindromo", function(){
+        it('')
+    })
 })
