@@ -7,14 +7,15 @@ function aleatorio(min, max) {
 // Ejercicio 2
 function juego (){
 
-var generado = Math.floor(Math.random() * 100) + 1;
-var numAdivinar;
-numAdivinar = prompt("Escribe un numero del 0 al 100:", "");
-
+let generado = Math.floor(Math.random() * 100) + 1;
+let numAdivinar;
+numAdivinar = prompt("Escribe un numero del 0 al 100:");
+//numAdivinar = Number(window.prompt("Type a number", "0"));
 do {
-  numAdivinar = prompt("Escribe un numero del 0 al 100:", "");
+  numAdivinar = prompt("Escribe un numero del 0 al 100:");
   if (generado == numAdivinar) {
     console.log("Exacto, el numero era el " + generado);
+    break;
   } else if (generado > numAdivinar) {
     console.log("El numero a adivinar es mayor. Prueba de nuevo.");
   } else {
@@ -25,10 +26,10 @@ do {
 }
 
 // Ejercicio 3
-function arreglo (num1, num2, num3){
-num1 = prompt("Escribe el primer numero: ");
-num2 = prompt("Escribe el segundo numero: ");
-num3 = prompt("Escribe el tercer numero: ");
+function arreglo (){
+let num1 = prompt("Escribe el primer numero: ");
+let num2 = prompt("Escribe el segundo numero: ");
+ let num3 = prompt("Escribe el tercer numero: ");
 var arreglo = Array(num1, num2, num3);
 return arreglo;
 }
