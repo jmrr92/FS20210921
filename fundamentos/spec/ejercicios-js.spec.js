@@ -16,9 +16,9 @@ describe("Pruebas ejercicios", function () {
             expect(generado).toBeGreaterThanOrEqual(0);
             expect(generado).toBeLessThanOrEqual(100);
 
-            let numAdivinar = prompt("Escribe un numero:")
+            let numAdivinar = prompt("Escribe un numero: " + generado, '');
 
-            expect(generado).toEqual(numAdivinar);
+            expect(generado).toMatch(numAdivinar);
         })
     })
 })
