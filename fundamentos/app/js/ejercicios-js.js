@@ -1,10 +1,10 @@
-// Numero aleatorio
+// Ejercicio 1
 function aleatorio(min, max) {
   const c = Math.random() * (max - min) + min;
   return Math.floor(c);
 }
 
-// Adivinar numero 0 a 100 (incluido)
+// Ejercicio 2
 function juego (){
 
 var generado = Math.floor(Math.random() * 100) + 1;
@@ -24,7 +24,7 @@ do {
 
 }
 
-// Array
+// Ejercicio 3
 function arreglo (num1, num2, num3){
 num1 = prompt("Escribe el primer numero: ");
 num2 = prompt("Escribe el segundo numero: ");
@@ -33,7 +33,7 @@ var arreglo = Array(num1, num2, num3);
 return arreglo;
 }
 
-// Numeros primos
+// Ejercicio 4
 function primo(numero) {
 
     for (var i = 2; i < numero; i++) {
@@ -47,7 +47,7 @@ function primo(numero) {
     return numero !== 1;
   }
 
-  //Validar DNI
+  // Ejercicio 5
   function validarDni(dni) {
     var numero
     var letra1
@@ -72,7 +72,7 @@ function primo(numero) {
      }
   }
 
-  // Palindromo
+  // Ejercicio 6
   function texto() {
     var palabra = prompt("Escribe una palabra").toLowerCase();
 
