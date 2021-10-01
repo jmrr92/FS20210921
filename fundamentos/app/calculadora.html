@@ -13,33 +13,12 @@
   </head>
   <body>
     <div class="calculadora">
-      <input
-        class="pantalla"
-        type="text"
-        id="valor_numero"
-        maxlength="20"
-        value="0"
-        readonly="true"
-      />
+      <input class="pantalla" type="text" id="valor_numero" maxlength="20" value="0" readonly="true"/>
       <p>
-        <input type="button" value="%" />
-        <button type="button" id="raiz">
-          <img
-            src="square-root-alt-solid.svg"
-            alt="Borrar"
-            width="30px"
-            height="10px"
-          />
-        </button>
-        <button type="button" id="boton-borrar">
-          <img
-            src="superscript-solid.svg"
-            alt="Borrar"
-            width="30px"
-            height="10px"
-          />
-        </button>
-        <input type="button" value="1/x" />
+        <input id="porcentaje" type="button" value="%" />
+        <button type="button" id="raiz"><img src="square-root-alt-solid.svg" alt="Borrar" width="30px" height="10px" /> </button>
+        <button type="button" id="boton-borrar"><img src="superscript-solid.svg"alt="Borrar"width="30px"height="10px"/></button>
+        <input id="1x" type="button" value="1/x" />
       </p>
 
       <p>
@@ -54,35 +33,35 @@
           />
         </button>
         <!-- <input type="button" value="Borrar" /> -->
-        <input type="button" value="/" />
+        <input id="botonDividir" type="button" value="/" />
       </p>
 
       <p>
         <input id="boton7" type="button" value="7" />
         <input id="boton8" type="button" value="8" />
         <input id="boton9" type="button" value="9" />
-        <input id="potencia" type="button" value="x" />
+        <input id="botonPotencia" type="button" value="x" />
       </p>
 
       <p>
         <input id="boton4" type="button" value="4" />
         <input id="boton5" type="button" value="5" />
         <input id="boton6" type="button" value="6" />
-        <input type="button" value="-" />
+        <input id="botonRestar" type="button" value="-" />
       </p>
 
       <p>
         <input id="boton1" type="button" value="1" />
         <input id="boton2" type="button" value="2" />
         <input id="boton3" type="button" value="3" />
-        <input type="button" value="+" />
+        <input id="botonSumar" type="button" value="+" />
       </p>
 
       <p>
-        <input type="button" value="+/-" />
+        <input id="botonSigno" type="button" value="+/-" />
         <input id="boton0" type="button" value="0" />
-        <input type="button" value="," />
-        <input type="button" value="=" />
+        <input id="botonDecimal" type="button" value="," />
+        <input id="botonIgual" type="button" value="=" />
       </p>
     </div>
 
@@ -104,11 +83,11 @@
             let boton1 = document.querySelector('#boton1')
             let boton2 = document.querySelector('#boton2')
             let boton3 = document.querySelector('#boton3')
-            let botonigual = document.querySelector('#boton-igual')
-            let boton0 = document.querySelector('#boton0')
-            let botonSigno = document.querySelector('#boton-signo')
-            let botonDec = document.querySelector('#boton-dec')
             let botonSumar = document.querySelector('#boton-sumar')
+            let botonSigno = document.querySelector('#boton-signo')
+            let boton0 = document.querySelector('#boton0')
+            let botonDec = document.querySelector('#boton-dec')
+            let botonIgual = document.querySelector('#boton-igual')
 
             let calcu = new Calculadora();
 
