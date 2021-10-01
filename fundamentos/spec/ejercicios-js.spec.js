@@ -1,5 +1,5 @@
-describe("Pruebas ejercicios", function () {
-    describe("Aleatorio", function () {
+xdescribe("Pruebas ejercicios", function () {
+    xdescribe("Aleatorio", function () {
         it('Aleatorio 0 - 100', function(){
             let min = prompt("Escribe un numero");
             let max = prompt("Escribe un numero");
@@ -9,7 +9,7 @@ describe("Pruebas ejercicios", function () {
         })
     })
 
-    describe("Juego", function () {
+    xdescribe("Juego", function () {
         it('Generado', function(){
             let generado = Math.floor(Math.random() * 100) + 1;
 

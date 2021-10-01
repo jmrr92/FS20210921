@@ -1,5 +1,5 @@
 xdescribe('Demos de las pruebas', function() {
-  describe('Calculos', function() {
+  xdescribe('Calculos', function() {
       it('suma 2 + 2', function() {
           let a = 2, b = 2;
           let rslt;
@@ -23,7 +23,7 @@ xdescribe('Demos de las pruebas', function() {
 
       it('esto queda pendiente')
 
-      describe('sumas', function() {
+      xdescribe('sumas', function() {
           [[2,2,4], [-1,2,1], [2,-1,1], [0,0,0], [0.1,0.2,0.3], ['a', 'b', 'ab']].forEach(caso => {
               it(`Suma ${caso[0]} mas ${caso[1]} debe ser ${caso[2]}`, function() {
                   expect(suma(caso[0],caso[1])).toBeCloseTo(caso[2],10)
@@ -36,7 +36,7 @@ xdescribe('Demos de las pruebas', function() {
           // });
       })
 
-      describe('divisiones', function() {
+      xdescribe('divisiones', function() {
           [[4,2,2], [4,0,2], ['a', 'b', NaN]].forEach(caso => {
               it(`Division: ${caso[0]} dividido ${caso[1]} debe ser ${caso[2]}`, function() {
                   expect(divide(caso[0],caso[1])).toBe(caso[2])

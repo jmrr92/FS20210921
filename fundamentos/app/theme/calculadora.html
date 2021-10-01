@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylecalc.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Calculadora</title>
+  </head>
+  <body>
+    <div class="calculadora">
+      <input
+        class="pantalla"
+        type="text"
+        id="valor_numero"
+        maxlength="20"
+        value="0"
+        readonly="true"
+      />
+      <p>
+        <input type="button" value="%" />
+        <button type="button" id="raiz">
+          <img
+            src="square-root-alt-solid.svg"
+            alt="Borrar"
+            width="30px"
+            height="10px"
+          />
+        </button>
+        <button type="button" id="boton-borrar">
+          <img
+            src="superscript-solid.svg"
+            alt="Borrar"
+            width="30px"
+            height="10px"
+          />
+        </button>
+        <input type="button" value="1/x" />
+      </p>
+
+      <p>
+        <input id="botonBorrarTodo" type="button" value="CE" />
+        <input type="button" value="C" />
+        <button type="button" id="boton-borrar">
+          <img
+            src="backspace-solid.svg"
+            alt="Borrar"
+            width="30px"
+            height="10px"
+          />
+        </button>
+        <!-- <input type="button" value="Borrar" /> -->
+        <input type="button" value="/" />
+      </p>
+
+      <p>
+        <input id="boton7" type="button" value="7" />
+        <input id="boton8" type="button" value="8" />
+        <input id="boton9" type="button" value="9" />
+        <input id="potencia" type="button" value="x" />
+      </p>
+
+      <p>
+        <input id="boton4" type="button" value="4" />
+        <input id="boton5" type="button" value="5" />
+        <input id="boton6" type="button" value="6" />
+        <input type="button" value="-" />
+      </p>
+
+      <p>
+        <input id="boton1" type="button" value="1" />
+        <input id="boton2" type="button" value="2" />
+        <input id="boton3" type="button" value="3" />
+        <input type="button" value="+" />
+      </p>
+
+      <p>
+        <input type="button" value="+/-" />
+        <input id="boton0" type="button" value="0" />
+        <input type="button" value="," />
+        <input type="button" value="=" />
+      </p>
+    </div>
+
+    <script src="js/calculadora.js"></script>
+    <script>
+        (function (){
+            let textoPantalla = document.querySelector('#valor-numero')
+            let botonBorrar = document.querySelector('#boton-borrar')
+            let botonBorrarTodo = document.querySelector('#boton-borrar-todo')
+            let botonDividir = document.querySelector('#boton-dividir')
+            let boton7 = document.querySelector('#boton7')
+            let boton8 = document.querySelector('#boton8')
+            let boton9 = document.querySelector('#boton9')
+            let botonMultiplicar = document.querySelector('#boton-multiplicar')
+            let boton4 = document.querySelector('#boton4')
+            let boton5 = document.querySelector('#boton5')
+            let boton6 = document.querySelector('#boton6')
+            let botonRestar = document.querySelector('#boton-restar')
+            let boton1 = document.querySelector('#boton1')
+            let boton2 = document.querySelector('#boton2')
+            let boton3 = document.querySelector('#boton3')
+            let botonigual = document.querySelector('#boton-igual')
+            let boton0 = document.querySelector('#boton0')
+            let botonSigno = document.querySelector('#boton-signo')
+            let botonDec = document.querySelector('#boton-dec')
+            let botonSumar = document.querySelector('#boton-sumar')
+
+            let calcu = new Calculadora();
+
+            document.querySelectorAll('.numeros').forEach(tag =>{
+                tag.addEventListener('click',ev =>{
+                    calcu.ponerdigito(ev.target.textContent);
+                    textoPantalla.value = calcu.pantalla;
+                }) 
+            })
+    </script>
+  </body>
+</html>

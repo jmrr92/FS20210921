@@ -1,0 +1,20 @@
+body {
+  border: 5px rgb(192, 186, 186) ridge;
+  width: 220px;
+  text-align: center;
+  background-color: #fdfdfd;
+}
+
+.pantalla {
+  background-color: #acff38;
+  width: 150px;
+  height: 26px;
+  font-size: 20px;
+  line-height: 26 px;
+  text-align: right;
+}
+
+.calculadora [type="button"] {
+  width: 35px;
+  padding: 0;
+}
