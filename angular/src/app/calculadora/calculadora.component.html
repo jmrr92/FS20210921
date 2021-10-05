@@ -1,1 +1,49 @@
-<p>calculadora works!</p>
+<body>
+
+<p>
+  <input class="pantalla" type="text"[(ngModel)]="pantalla">
+</p>
+
+<p>
+  <input class="otroBoton" id="porcentaje" type="button" value="%" />
+  <input class="otroBoton" id="raiz" type="button" value="Raiz" />
+  <input class="otroBoton" id="potencia" type="button" value="Potencia" />
+  <input class="otroBoton" id="fraccion" type="button" value="1/x" />
+</p>
+
+<p>
+  <input class="otroBoton" id="botonCE" type="button" value="CE" (click)="borrarTodo()"/>
+  <input class="otroBoton" id="botonC" type="button" value="C" (click)="borrarTodo()"/>
+  <input class="otroBoton" id="botonBorrar" type="button" value="Borrar" (click)="borrarDigito()"/>
+  <input class="otroBoton" id="botonDividir" type="button" value="/" (click)="operar('/')"/>
+</p>
+
+<p>
+  <input class="numero" id="boton7" type="button" value="7" (click)="ponerDigito('7')"/>
+  <input class="numero" id="boton8" type="button" value="8" (click)="ponerDigito('8')"/>
+  <input class="numero" id="boton9" type="button" value="9" (click)="ponerDigito('9')"/>
+  <input class="otroBoton" id="botonMultiplicar" type="button" value="x" (click)="operar('*')"/>
+</p>
+
+<p>
+  <input class="numero" id="boton4" type="button" value="4" (click)="ponerDigito('4')"/>
+  <input class="numero" id="boton5" type="button" value="5" (click)="ponerDigito('5')"/>
+  <input class="numero" id="boton6" type="button" value="6" (click)="ponerDigito('6')"/>
+  <input class="otroBoton" id="botonRestar" type="button" value="-" (click)="operar('-')"/>
+</p>
+
+<p>
+  <input class="numero" id="boton1" type="button" value="1" (click)="ponerDigito('1')"/>
+  <input class="numero" id="boton2" type="button" value="2" (click)="ponerDigito('2')"/>
+  <input class="numero" id="boton3" type="button" value="3" (click)="ponerDigito('3')"/>
+  <input class="otroBoton" id="botonSumar" type="button" value="+" (click)="operar('+')"/>
+</p>
+
+<p>
+  <input class="otroBoton" id="botonSigno" type="button" value="+/-" (click)="cambiarSigno()"/>
+  <input class="numero" id="boton0" type="button" value="0" (click)="ponerDigito('0')"/>
+  <input class="otroBoton" id="botonDecimal" type="button" value="," (click)="ponerComa()"/>
+  <input class="otroBoton" id="botonIgual" type="button" value="=" (click)="operar('=')"/>
+</p>
+
+</body>
