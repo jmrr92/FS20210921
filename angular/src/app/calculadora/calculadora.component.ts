@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { LoggerService } from 'src/lib/my-core';
 
 @Component({
   selector: 'app-calculadora',
