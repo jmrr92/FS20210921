@@ -17,7 +17,7 @@ export class ClientesViewModel {
     {id: 1, nombre: 'pepito', apellidos: 'grillo', correo: 'pepito@grillo', edad: 99, dni: '12345678Z'},
   ];
 
-  Elemento: Persona | undefined;
+  Elemento: Persona = {id: null, nombre: '', apellidos: '', correo: null, edad: null, dni: null};
   IsAdd = true;
 
   constructor(private notify: NotificationService) {
