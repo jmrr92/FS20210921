@@ -4,11 +4,13 @@
 </div>
 
 <form #miForm="ngForm">
+
   <div>
     <label for="id">Codigo</label>
     <input type="number" id="id" name="id" [(ngModel)]="vm.Elemento.id" #id="ngModel" required>
     <output class="error" [hidden]= "!id.hasError('required')">Es obligatorio</output>
   </div>
+
   <div>
     <label for="nombre">Nombre</label>
     <input type="text" id="nombre" name="nombre" [(ngModel)]="vm.Elemento.nombre" #nombre="ngModel"
@@ -17,18 +19,21 @@
     <output class="error" [hidden]= "!nombre.errors?.minlength && !nombre.errors?.maxlength">Debe tener entre 2 y 10 letras.</output>
     {{nombre.errors | json}}
   </div>
+
   <div>
     <label for="apellidos">Apellidos</label>
     <input type="text" id="apellidos" name="apellidos" [(ngModel)]="vm.Elemento.apellidos" #apellidos="ngModel"
     minlength="2" maxlength="10">
     <output class="error" [hidden]= "!apellidos.errors?.minlength && !apellidos.errors?.maxlength">Debe tener entre 2 y 10 letras.</output>
   </div>
+
   <div>
     <label for="correo">Correo</label>
     <input type="email" id="correo" name="correo" [(ngModel)]="vm.Elemento.correo" #correo="ngModel"
     maxlength="100">
     <output class="error" [hidden]= "!correo.errors?.email">No es un correo electronico valido.</output>
   </div>
+
   <div>
     <label for="edad">Edad</label>
     <input type="number" id="edad" name="edad" [(ngModel)]="vm.Elemento.edad" #edad="ngModel"
@@ -36,12 +41,15 @@
     <output class="error" [hidden]= "!edad.errors?.min">Debe tener al menos 16 años.</output>
     <output class="error" [hidden]= "!edad.errors?.max">Debe 67 años como maximo.</output>
   </div>
+
   <div>
     <label for="dni">DNI</label>
     <input type="text" id="dni" name="dni" [(ngModel)]="vm.Elemento.dni" #dni="ngModel">
   </div>
+
   <div>
     <input type="button" value="enviar" (click)="vm.send()" [disabled]="miForm.invalid">
     <input type="button" value="volver" (click)="vm.cancel()">
   </div>
+
 </form>
