@@ -13,12 +13,12 @@ import { HomeComponent } from '../main';
 })
 export class DinamicoComponent implements OnInit {
   menu = [
-    { texto: 'contactos', icono: '', componente: ContactosComponent},
-    { texto: 'formulario clientes', icono: '', componente: ClienteFormularioComponent},
-    { texto: 'formulario', icono: '', componente: FormularioComponent },
-    { texto: 'inicio', icono: '', componente: HomeComponent },
-    { texto: 'demos', icono: '', componente: DemosComponent },
-    { texto: 'calculadora', icono: '', componente: CalculadoraComponent },
+    { texto: 'Contactos', icono: 'fas fa-address-book', componente: ContactosComponent},
+    { texto: 'Inicio', icono: 'fas fa-home', componente: HomeComponent },
+    { texto: 'Formulario Clientes', icono: 'fas fa-users', componente: ClienteFormularioComponent},
+    { texto: 'Formulario', icono: 'fab fa-wpforms', componente: FormularioComponent },
+    { texto: 'Demos', icono: 'fas fa-flask', componente: DemosComponent },
+    { texto: 'Calculadora', icono: 'fas fa-calculator', componente: CalculadoraComponent },
   ];
 
   actual = this.menu[0].componente;
