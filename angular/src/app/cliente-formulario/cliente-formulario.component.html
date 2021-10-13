@@ -6,7 +6,7 @@
     <label for="id">Customer ID:</label>
     <input type="text" id="id" name="id" [(ngModel)]="vm.Elemento.id" #id="ngModel" required/>
     <output class="error" [hidden]= "!id.hasError('required')">Es obligatorio</output>
-    <app-show-errors-messages [message_error]="errorObligacion"></app-show-errors-messages>
+    <app-show-errors-messages [errors]="id.errors"></app-show-errors-messages>
   </div>
 
   <div>
