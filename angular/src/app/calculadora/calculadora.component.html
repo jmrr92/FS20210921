@@ -5,16 +5,16 @@
 </p>
 
 <p>
-  <input class="otroBoton" id="porcentaje" type="button" value="%" />
-  <input class="otroBoton" id="raiz" type="button" value="Raiz" />
-  <input class="otroBoton" id="potencia" type="button" value="Potencia" />
-  <input class="otroBoton" id="fraccion" type="button" value="1/x" />
+  <button class="otroBoton" id="porcentaje" type="button" value="%"><i class="fas fa-percentage"></i></button>
+  <button class="otroBoton" id="raiz" type="button" value="Raiz"><i class="fas fa-square-root-alt"></i> </button>
+  <button class="otroBoton" id="potencia" type="button" value="Potencia"><i class="fas fa-superscript"></i></button>
+  <button class="otroBoton" id="fraccion" type="button" value="1/x"><i class="fas fa-divide"></i></button>
 </p>
 
 <p>
   <input class="otroBoton" id="botonCE" type="button" value="CE" (click)="borrarTodo()"/>
   <input class="otroBoton" id="botonC" type="button" value="C" (click)="borrarTodo()"/>
-  <input class="otroBoton" id="botonBorrar" type="button" value="Borrar" (click)="borrarDigito()"/>
+  <button class="otroBoton" id="botonBorrar" type="button" value="Borrar" (click)="borrarDigito()"><i class="fas fa-backspace"></i></button>
   <input class="otroBoton" id="botonDividir" type="button" value="/" (click)="operar('/')"/>
 </p>
 
@@ -43,7 +43,7 @@
   <input class="otroBoton" id="botonSigno" type="button" value="+/-" (click)="cambiarSigno()"/>
   <input class="numero" id="boton0" type="button" value="0" (click)="ponerDigito('0')"/>
   <input class="otroBoton" id="botonDecimal" type="button" value="," (click)="ponerComa()"/>
-  <input class="otroBoton" id="botonIgual" type="button" value="=" (click)="operar('=')"/>
+  <button class="otroBoton" id="botonIgual" type="button" value="=" (click)="operar('=')"><i class="fas fa-equals"></i></button>
 </p>
 
 </body>
