@@ -1,24 +1,25 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MyCoreModule } from 'src/lib/my-core';
-import { CommonServicesModule } from '../common-services';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ContactosComponent, CONTACTOS_COMPONENTES } from './componente.component';
-
-
+import { MyCoreModule } from 'src/lib/my-core';
+import { ContactosComponent, CONTACTOS_COMPONENTES } from '.';
+import { CommonComponentModule } from '../common-component/common-component.module';
+import { CommonServicesModule } from '../common-services';
+import {PaginatorModule} from 'primeng/paginator';
 
 @NgModule({
   declarations: [
-    CONTACTOS_COMPONENTES
+    CONTACTOS_COMPONENTES,
   ],
   exports: [
-    CONTACTOS_COMPONENTES
+    // CONTACTOS_COMPONENTES,
+    ContactosComponent,
   ],
   imports: [
     CommonModule, FormsModule, RouterModule.forChild([]),
-   MyCoreModule, CommonServicesModule,
-    ]
-
+    MyCoreModule, CommonServicesModule,
+    PaginatorModule, CommonComponentModule, MyCoreModule,
+  ]
 })
 export class ContactosModule { }
