@@ -63,82 +63,95 @@ export class BotonesComponent implements OnInit, OnDestroy {
   }
 
   constructor(protected vm: ContactosViewModelService) {}
-  ngOnInit(): void {
-  }
-  ngOnDestroy(): void {
-  }
+  ngOnInit(): void {}
+  ngOnDestroy(): void {}
 }
 
 @Component({
   selector: 'app-contactos-list',
   templateUrl: './tmpl-list.con-rutas.component.html',
-  styleUrls: ['./componente.component.scss']
+  styleUrls: ['./componente.component.scss'],
 })
 export class ContactosListComponent implements OnInit {
-  constructor(protected vm: ContactosViewModelService) { }
-  public get VM(): ContactosViewModelService { return this.vm; }
+  constructor(protected vm: ContactosViewModelService) {}
+  public get VM(): ContactosViewModelService {
+    return this.vm;
+  }
   ngOnInit(): void {
     //this.vm.list();
     this.vm.load();
   }
 }
+
 @Component({
   selector: 'app-contactos-add',
   templateUrl: './tmpl-form.component.html',
-  styleUrls: ['./componente.component.scss']
+  styleUrls: ['./componente.component.scss'],
 })
 export class ContactosAddComponent implements OnInit {
-  constructor(protected vm: ContactosViewModelService) { }
-  public get VM(): ContactosViewModelService { return this.vm; }
+  constructor(protected vm: ContactosViewModelService) {}
+  public get VM(): ContactosViewModelService {
+    return this.vm;
+  }
   ngOnInit(): void {
     this.VM.add();
   }
 }
+
 @Component({
   selector: 'app-contactos-edit',
   templateUrl: './tmpl-form.component.html',
-  styleUrls: ['./componente.component.scss']
+  styleUrls: ['./componente.component.scss'],
 })
 export class ContactosEditComponent implements OnInit, OnDestroy {
   private obs$: any;
-  constructor(protected vm: ContactosViewModelService,
-    protected route: ActivatedRoute, protected router: Router) { }
-  public get VM(): ContactosViewModelService { return this.vm; }
+  constructor(
+    protected vm: ContactosViewModelService,
+    protected route: ActivatedRoute,
+    protected router: Router
+  ) {}
+  public get VM(): ContactosViewModelService {
+    return this.vm;
+  }
   ngOnInit(): void {
-    this.obs$ = this.route.paramMap.subscribe(
-      (params: ParamMap) => {
-        const id = parseInt(params?.get('id') ?? '');
-        if (id) {
-          this.vm.edit(id);
-        } else {
-          this.router.navigate(['/404.html']);
-        }
-      });
+    this.obs$ = this.route.paramMap.subscribe((params: ParamMap) => {
+      const id = parseInt(params?.get('id') ?? '');
+      if (id) {
+        this.vm.edit(id);
+      } else {
+        this.router.navigate(['/404.html']);
+      }
+    });
   }
   ngOnDestroy(): void {
     this.obs$.unsubscribe();
   }
 }
+
 @Component({
   selector: 'app-contactos-view',
   templateUrl: './tmpl-view.component.html',
-  styleUrls: ['./componente.component.scss']
+  styleUrls: ['./componente.component.scss'],
 })
 export class ContactosViewComponent implements OnInit, OnDestroy {
   private obs$: any;
-  constructor(protected vm: ContactosViewModelService,
-    protected route: ActivatedRoute, protected router: Router) { }
-  public get VM(): ContactosViewModelService { return this.vm; }
+  constructor(
+    protected vm: ContactosViewModelService,
+    protected route: ActivatedRoute,
+    protected router: Router
+  ) {}
+  public get VM(): ContactosViewModelService {
+    return this.vm;
+  }
   ngOnInit(): void {
-    this.obs$ = this.route.paramMap.subscribe(
-      (params: ParamMap) => {
-        const id = parseInt(params?.get('id') ?? '');
-        if (id) {
-          this.vm.view(id);
-        } else {
-          this.router.navigate(['/404.html']);
-        }
-      });
+    this.obs$ = this.route.paramMap.subscribe((params: ParamMap) => {
+      const id = parseInt(params?.get('id') ?? '');
+      if (id) {
+        this.vm.view(id);
+      } else {
+        this.router.navigate(['/404.html']);
+      }
+    });
   }
   ngOnDestroy(): void {
     this.obs$.unsubscribe();
