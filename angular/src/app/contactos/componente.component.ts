@@ -63,8 +63,10 @@ export class BotonesComponent implements OnInit, OnDestroy {
   }
 
   constructor(protected vm: ContactosViewModelService) {}
-  ngOnInit(): void {}
-  ngOnDestroy(): void {}
+  ngOnInit(): void {
+  }
+  ngOnDestroy(): void {
+  }
 }
 
 @Component({
