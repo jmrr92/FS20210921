@@ -5,6 +5,7 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { ContactosAddComponent, ContactosComponent, ContactosEditComponent, ContactosListComponent, ContactosViewComponent } from './contactos/componente.component';
 import { DemosComponent } from './demos/demos.component';
 import { HomeComponent, PageNotFoundComponent } from './main';
+import { RegisterUserComponent } from './security';
 
 // http://localhost:4200/contactos/add
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'contactos/:id/:kk', component: ContactosViewComponent },
   { path: 'antonie/hasted', redirectTo: '/contactos/27'},
   { path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule)},
+  { path: 'registro', component: RegisterUserComponent },
   { path: '404.html', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
