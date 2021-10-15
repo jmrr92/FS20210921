@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MyCoreModule } from 'src/lib/my-core';
-import { ContactosComponent, CONTACTOS_COMPONENTES } from '.';
+import { ContactosComponent, CONTACTOS_COMPONENTES } from './componente.component';
 import { CommonComponentModule } from '../common-component/common-component.module';
 import { CommonServicesModule } from '../common-services';
 import {PaginatorModule} from 'primeng/paginator';

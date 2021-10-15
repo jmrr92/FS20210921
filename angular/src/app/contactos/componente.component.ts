@@ -11,7 +11,6 @@ import { ContactosViewModelService } from './servicios.service';
 @Component({
   selector: 'app-contactos',
   templateUrl: './tmpl-anfitrion.component.html',
-  // providers: [ ContactosViewModelService ],
   styleUrls: ['./componente.component.scss'],
 })
 export class ContactosComponent implements OnInit, OnDestroy {
@@ -20,7 +19,6 @@ export class ContactosComponent implements OnInit, OnDestroy {
     return this.vm;
   }
   ngOnInit(): void {
-    //this.vm.list();
     this.vm.load();
   }
   ngOnDestroy(): void {
