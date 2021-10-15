@@ -12,7 +12,7 @@ export class CalculadoraComponent implements OnInit {
   op: string;
   resultado: boolean;
 
-  constructor() {
+  constructor(private log : LoggerService) {
     this.pantalla = '0';
     this.acumulado = 0;
     this.op = '+';
