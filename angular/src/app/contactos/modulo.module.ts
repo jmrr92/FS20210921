@@ -13,7 +13,6 @@ import {PaginatorModule} from 'primeng/paginator';
     CONTACTOS_COMPONENTES,
   ],
   exports: [
-    // CONTACTOS_COMPONENTES,
     ContactosComponent,
   ],
   imports: [
