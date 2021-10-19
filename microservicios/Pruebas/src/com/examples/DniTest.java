@@ -39,7 +39,7 @@ class DniTest {
 	@ParameterizedTest
 	@CsvSource({ "@NullString", "1234", "12332199E", "57382920Y", "''", "yjk"})
 	void testEsDNIfalse(String dni) {
-		assertTrue(validar.esDNI(dni));
+		assertFalse(validar.esDNI(dni));
 	}
 
 }
