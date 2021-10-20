@@ -1,4 +1,5 @@
 package com.examples;
+
 import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -21,10 +22,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
-
 class CalculadoraTest {
-	Calculadora calc;
+	Calc calc;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -43,39 +42,74 @@ class CalculadoraTest {
 	void tearDown() throws Exception {
 	}
 
-	@Test
-	void testSuma() {
-		calc = new Calculadora();
-		assertEquals(4, calc.suma(2, 2));
+	@ParameterizedTest(name = "Suma {index} => {0} + {1} = {2}")
+	@CsvSource({ "2,2,4", "0,0,0", "1,-1,0"/*, "'0.1', '0.2', '0.3'"*/ })
+	void testSuma(double a, double b, double rslt) {
+		assumeTrue(b >= 0);
+		assertEquals(rslt, calc.suma(a, b));
+	}
+	@ParameterizedTest(name = "Multiplica {index} => {0} * {1} = {2}")
+	@CsvSource({ "2,2,4" })
+	void testMultiplica(double a, double b, double rslt) {
+		assertEquals(rslt, calc.multiplica(a, b));
 	}
 
+	@Test
+	@Tag("smoke")
+	@Tag("lenta")
+	void testHumo() {
+		assertEquals(3, calc.suma(1, 2));
+	}
 	@Nested
 	@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 	class Divisiones {
-		@Test
-		void testDivideDoubleDouble() {
-			assertEquals(0.5, calc.divide(1.0, 2.0));
-			assertEquals(Double.POSITIVE_INFINITY, calc.divide(1.0, 0));
+		Calc calc;
+
+		@BeforeEach
+		void setUp() throws Exception {
+			calc = new Calculadora();
+		}
+		
+		@RepeatedTest(value = 5, name = "{displayName} {currentRepetition}/{totalRepetitions}")
+		void test_Divide_Double_Double() {
+//			assertEquals(0.5, calc.divide(1.0, 2));
+//			//assertThrows(Exception.class, () -> calc.divide(1.0, 0));
+//			assertEquals(Double.POSITIVE_INFINITY, calc.divide(1.0, 0));
+////			var d = 1 / 0;
+			assertAll("Divisiones enteras", 
+				() -> assertEquals(0.5, calc.divide(1.0, 2), "la real"),
+//				() -> assertEquals(0.5, calc.divide(1, 2), "La entera"),
+				() -> assertEquals(Double.POSITIVE_INFINITY, calc.divide(1.0, 0))
+			);
 		}
 
 		@Test
-		@DisplayName("Division Entera")
+		@DisplayName("Division entera")
+		@Disabled
 		void testDivideIntInt() {
-			assertEquals(1, calc.divide(2, 2));
+			assertEquals(0, calc.divide(1, 2));
+//			try {
+//				assertEquals(0, calc.divide(1, 0), "la primera");
+//			} catch (Exception e) {
+//				fail("Excepcion no controlada");
+//			}
+//			assertEquals(0, calc.divide(0, 0), "la segunda");
 			assertThrows(Exception.class, () -> calc.divide(1, 0));
 		}
 	}
-
-	@Nested
-	@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-	class Mockeado {
-		@Mock
-		Calculadora calculadora;
-
-		@Test
-		void suma_mock() {
-			when(calculadora.suma(2, 2)).thenReturn(2.0);
-			assertEquals(calculadora.suma(2, 2), 2);
-		}
-	}
+	
+//	@Nested
+//	@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+//	@ExtendWith(MockitoExtension.class)
+//	class Mockeado {
+//		@Mock
+//		Calculadora calculadora;
+//		
+//		@Test
+//		void suma_mock() {
+//			when(calculadora.suma(2, 2)).thenReturn(2.0);
+//			
+//			assertEquals(calculadora.suma(2, 2), 2);
+//		}
+//	}
 }
