@@ -4,11 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.domains.contracts.services.ActorService;
 import com.example.domains.entities.Actor;
+import com.example.exceptions.DuplicateKeyException;
+import com.example.exceptions.InvalidDataException;
+import com.example.exceptions.NotFoundException;
 import com.example.infraestructure.repositories.ActorRepository;
 
+@Service
 public class ActorServiceImpl implements ActorService {
 	@Autowired
 	private ActorRepository dao;
@@ -24,28 +29,27 @@ public class ActorServiceImpl implements ActorService {
 	}
 
 	@Override
-	public Actor add(Actor item) {
+	public Actor add(Actor item) throws DuplicateKeyException, InvalidDataException {
 		if(getOne(item.getActorId()).isPresent())
-		dao.save(item);
-		return null;
+			throw new DuplicateKeyException();
+		return dao.save(item);
 	}
 
 	@Override
-	public Actor modify(Actor item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Actor item) {
-		// TODO Auto-generated method stub
-
+	public Actor modify(Actor item) throws NotFoundException, InvalidDataException {
+		if(getOne(item.getActorId()).isEmpty())
+			throw new NotFoundException();
+		return dao.save(item);
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
+		dao.deleteById(id);
+	}
+	
+	@Override
+	public void delete(Actor item) {
+		dao.deleteById(item.getActorId());
 	}
 
 }

@@ -1,12 +1,22 @@
 package com.example;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.domains.contracts.services.ActorService;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.Film;
+import com.example.domains.entities.dtos.ActorDTO;
 import com.example.infraestructure.repositories.ActorRepository;
 import com.example.ioc.Servicio;
 
@@ -17,21 +27,56 @@ public class DemoApplication implements CommandLineRunner {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Autowired
-	Servicio srv;
+//	@Autowired
+//	Servicio srv;
+//	
+//	@Value("${mi.propia.clave}")
+//	String name;
+//	
+//	@Autowired
+//	ActorRepository dao;
 	
-	@Value("${mi.propia.clave}")
-	String name;
-	
 	@Autowired
-	ActorRepository dao;
+	ActorService srv;
 	
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
+//		Optional<Actor> a = dao.findById(201);
+//		if(a.isPresent())
+//			System.out.println(a.get());
+//		else {
+//			System.out.println("No encontrado");
+//		}
 		
-		System.out.println("Soy " + name);
+//		Actor actor= new Actor(0, "Pepito", "Grillo");
+//		actor.addFilmActor(new Film(1));
+//		Actor actor= a.get();
+//		actor.setFirstName(actor.getFirstName().toUpperCase());
+//		dao.save(actor);
+////		dao.deleteById(201);
+//		dao.findAll().forEach(System.out::println);
+//		
+
+//		Optional<Actor> a = dao.findById(1);
+//		if(a.isPresent()) {
+//			System.out.println(a.get());
+//			a.get().getFilmActors().forEach(item -> System.out.println(item.getFilm()));
+//		} else {
+//			System.out.println("No encontrado");
+//		}
+		//dao.findByFirstNameStartingWithOrderByLastNameDesc("P").forEach(System.out::println);
+//		dao.laMia(new Date(LocalDate.now().toString())).forEach(System.out::println);
+//		dao.findByLastUpdateGreaterThan(LocalDate.now()).forEach(System.out::println);
+
+//		srv.getAll().forEach(System.out::println);
+		// srv.getAll().forEach(item-> System.out.println(ActorDTO.from(item)));
+//		var fuera = new ActorDTO(205, "PEPITO", "GRILLO");
+//		System.out.println(srv.modify(ActorDTO.from(fuera)));
 		
-		dao.findAll().forEach(System.out::println);
+		srv.getAll().forEach(System.out::println);
+		// srv.modify(new Actor(333));
+//		srv.getAll().forEach(System.out::println);
 	}
 
 }
