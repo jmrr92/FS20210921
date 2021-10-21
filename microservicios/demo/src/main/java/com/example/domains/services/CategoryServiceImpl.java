@@ -7,45 +7,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domains.contracts.services.ActorService;
+import com.example.domains.contracts.services.CategoryService;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.Category;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
-import com.example.infraestructure.repositories.ActorRepository;
+import com.example.infraestructure.repositories.CategoryRepository;
 
 @Service
-public class ActorServiceImpl implements ActorService {
+public class CategoryServiceImpl implements CategoryService {
 	@Autowired
-	private ActorRepository dao;
+	private CategoryRepository dao;
 	@Override
-	public List<Actor> getAll() {
+	public List<Category> getAll() {
 
 		return dao.findAll();
 	}
 
 	@Override
-	public Optional<Actor> getOne(Integer id) {
+	public Optional<Category> getOne(Integer id) {
 		return dao.findById(id);
 	}
 
 	@Override
-	public Actor add(Actor item) throws DuplicateKeyException, InvalidDataException {
+	public Category add(Category item) throws DuplicateKeyException, InvalidDataException {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
-		if(item.isInvalid())
+		if(item.isInvalid)
 			throw new InvalidDataException("Errores de validación: ");
-		if(getOne(item.getActorId()).isPresent())
+		if(getOne(item.getCategoryId()).isPresent())
 			throw new DuplicateKeyException();
 		return dao.save(item);
 	}
 	
 	@Override
-	public Actor modify(Actor item) throws NotFoundException, InvalidDataException {
+	public Category modify(Category item) throws NotFoundException, InvalidDataException {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		if(item.isInvalid())
 			throw new InvalidDataException("Errores de validación: ");
-		if(getOne(item.getActorId()).isEmpty())
+		if(getOne(item.getCategoryId()).isEmpty())
 			throw new NotFoundException();
 		return dao.save(item);
 	}
@@ -56,8 +58,8 @@ public class ActorServiceImpl implements ActorService {
 	}
 	
 	@Override
-	public void delete(Actor item) {
-		dao.deleteById(item.getActorId());
+	public void delete(Category item) {
+		dao.deleteById(item.getCategoryId());
 	}
 
 }

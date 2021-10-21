@@ -14,10 +14,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.domains.contracts.services.ActorService;
+import com.example.domains.contracts.services.CategoryService;
 import com.example.domains.entities.Actor;
+import com.example.domains.entities.Category;
 import com.example.domains.entities.Film;
 import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.ActorShort;
 import com.example.infraestructure.repositories.ActorRepository;
+import com.example.infraestructure.repositories.CategoryRepository;
 import com.example.ioc.Servicio;
 
 @SpringBootApplication
@@ -33,11 +37,11 @@ public class DemoApplication implements CommandLineRunner {
 //	@Value("${mi.propia.clave}")
 //	String name;
 //	
-//	@Autowired
-//	ActorRepository dao;
+	@Autowired
+	CategoryRepository dao;
 	
 	@Autowired
-	ActorService srv;
+	CategoryService srv;
 	
 	@Override
 	@Transactional
@@ -66,7 +70,7 @@ public class DemoApplication implements CommandLineRunner {
 //			System.out.println("No encontrado");
 //		}
 		//dao.findByFirstNameStartingWithOrderByLastNameDesc("P").forEach(System.out::println);
-//		dao.laMia(new Date(LocalDate.now().toString())).forEach(System.out::println);
+//		dao.laMia(new Date(Date.parse(LocalDate.now().toString()))).forEach(System.out::println);
 //		dao.findByLastUpdateGreaterThan(LocalDate.now()).forEach(System.out::println);
 
 //		srv.getAll().forEach(System.out::println);
@@ -74,9 +78,25 @@ public class DemoApplication implements CommandLineRunner {
 //		var fuera = new ActorDTO(205, "PEPITO", "GRILLO");
 //		System.out.println(srv.modify(ActorDTO.from(fuera)));
 		
-		srv.getAll().forEach(System.out::println);
+//		dao.findByActorIdNotNull(ActorShort.class)
+//			.forEach(item-> System.out.println(item.getNombreCompleto()));
+//		dao.findByActorIdNotNull(ActorDTO.class)
+//		.forEach(item-> System.out.println(item));
+//		dao.findByActorIdNotNull(Actor.class)
+//		.forEach(item-> System.out.println(item));
+			// .forEach(System.out::println);
 		// srv.modify(new Actor(333));
 //		srv.getAll().forEach(System.out::println);
+		Category categoria= new Category();
+		if(categoria.isInvalid())
+			categoria.getErrors().forEach(item-> 
+			System.out.println(item.getPropertyPath() + ": " + item.getMessage())
+			);
+		else {
+			System.out.println("Valido");
+		}
+		// dao.save(actor);
+		srv.add(categoria);
 	}
 
 }
