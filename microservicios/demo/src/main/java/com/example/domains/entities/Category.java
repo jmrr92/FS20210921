@@ -2,16 +2,8 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
-
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.validator.constraints.Length;
-
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Objects;
 
 
 /**
@@ -28,35 +20,17 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id")
 	private int categoryId;
-	
-	@Column(name = "name")
-	@NotBlank
-	@Length(min=2, max=25)
-	private String name;
 
 	@Column(name="last_update")
-	@Generated(value = GenerationTime.ALWAYS)
-	@PastOrPresent
 	private Timestamp lastUpdate;
 
+	private String name;
 
 	//bi-directional many-to-one association to FilmCategory
 	@OneToMany(mappedBy="category")
 	private List<FilmCategory> filmCategories;
 
 	public Category() {
-	}
-	
-	public Category(int categoryId) {
-		super();
-		this.categoryId = categoryId;
-	}
-
-	public Category(int categoryId, String name) {
-		super();
-		this.categoryId = categoryId;
-		this.name = name;
-
 	}
 
 	public int getCategoryId() {
@@ -103,37 +77,6 @@ public class Category implements Serializable {
 		filmCategory.setCategory(null);
 
 		return filmCategory;
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(categoryId);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Category other = (Category) obj;
-		return categoryId == other.categoryId;
-	}
-
-	@Override
-	public String toString() {
-		return "Category [categoryId=" + categoryId + ", lastUpdate=" + lastUpdate + ", name=" + name
-				+ "]";
-	}
-	
-	public void cienciaFiccion() {
-
-	}
-
-	public void accion() {
-
 	}
 
 }

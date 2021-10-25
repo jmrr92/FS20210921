@@ -3,6 +3,7 @@ package com.example.domains.entities;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
@@ -11,34 +12,37 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.EntityBase;
+import com.example.domains.core.validators.NIF;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 /**
  * The persistent class for the actor database table.
  * 
  */
 @Entity
-@Table(name = "actor")
-@NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a")
+@Table(name="actor")
+@NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
 public class Actor extends EntityBase<Actor> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "actor_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="actor_id")
 	private int actorId;
 
-	@Column(name = "first_name")
+	@Column(name="first_name")
 	@NotBlank
-	@Length(min=2, max=45)
+	@Length(min=2, max = 45)
 	private String firstName;
 
-	@Column(name = "last_name")
+	@Column(name="last_name")
 	@NotBlank
-	@Length(min=2, max=45)
+	@Length(min=2, max = 45)
 	private String lastName;
 
 	@Column(name="last_update")
@@ -46,9 +50,10 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	@PastOrPresent
 	private Timestamp lastUpdate;
 
-	// bi-directional many-to-one association to FilmActor
-	@OneToMany(mappedBy = "actor")
-	private List<FilmActor> filmActors;
+	//bi-directional many-to-one association to FilmActor
+	@OneToMany(mappedBy="actor")
+	@Valid
+	private List<FilmActor> filmActors = new ArrayList<FilmActor>();
 
 	public Actor() {
 	}
@@ -111,6 +116,13 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 
 		return filmActor;
 	}
+	public FilmActor addFilmActor(Film film) {
+		if(film == null)
+			throw new IllegalArgumentException("La pelicula es obligatoria");
+		var filmActor = new FilmActor(film, this);
+		getFilmActors().add(filmActor);
+		return filmActor;
+	}
 
 	public FilmActor removeFilmActor(FilmActor filmActor) {
 		getFilmActors().remove(filmActor);
@@ -143,15 +155,16 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	}
 
 	public void jubilate() {
-
+		
 	}
 
 	public void despedido() {
-
+		
 	}
 
 	public void darPremio(String premio) {
-
+		
 	}
 
+	
 }
