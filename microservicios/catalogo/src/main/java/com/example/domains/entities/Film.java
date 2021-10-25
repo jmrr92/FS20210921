@@ -2,7 +2,11 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.EntityBase;
 
@@ -27,9 +31,12 @@ public class Film extends EntityBase<Film> implements Serializable {
 	private int filmId;
 
 	@Lob
+	@Column(name="description")
+	@NotBlank
 	private String description;
 
 	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
 
 	private int length;
@@ -48,6 +55,9 @@ public class Film extends EntityBase<Film> implements Serializable {
 	@Column(name="replacement_cost")
 	private BigDecimal replacementCost;
 
+	@Column(name="title")
+	@NotBlank
+	@Length(min=2, max = 128)
 	private String title;
 
 	//bi-directional many-to-one association to Language
@@ -66,7 +76,6 @@ public class Film extends EntityBase<Film> implements Serializable {
 
 	//bi-directional many-to-one association to FilmCategory
 	@OneToMany(mappedBy="film")
-	@Valid
 	private List<FilmCategory> filmCategories;
 
 	public Film() {
@@ -76,6 +85,16 @@ public class Film extends EntityBase<Film> implements Serializable {
 		super();
 		this.filmId = filmId;
 	}
+
+	public Film(int filmId, String title, String description, Short releaseYear) {
+		super();
+		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		
+	}
+
 
 	public int getFilmId() {
 		return this.filmId;
@@ -215,11 +234,6 @@ public class Film extends EntityBase<Film> implements Serializable {
 		filmCategory.setFilm(null);
 
 		return filmCategory;
-	}
-
-	@Override
-	public String toString() {
-		return "Film [filmId=" + filmId + ", title=" + title + "]";
 	}
 
 }
