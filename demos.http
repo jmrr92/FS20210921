@@ -90,4 +90,4 @@ delete  http://localhost:8001/actores/206
 
 ###
 
-GET http://localhost:8010/peliculas
+GET http://localhost:8010/peliculas/1

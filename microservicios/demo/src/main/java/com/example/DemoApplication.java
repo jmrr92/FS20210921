@@ -1,6 +1,7 @@
 package com.example;
 
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -23,6 +24,9 @@ import com.example.domains.entities.dtos.ActorShort;
 import com.example.infraestructure.repositories.ActorRepository;
 import com.example.ioc.Servicio;
 
+import springfox.documentation.oas.annotations.EnableOpenApi;
+
+@EnableOpenApi
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
