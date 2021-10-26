@@ -3,12 +3,14 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.EntityBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -39,20 +41,25 @@ public class Film extends EntityBase<Film> implements Serializable {
 	@Generated(value = GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
 
+	@JsonIgnore
 	private int length;
-
+	
+	@JsonIgnore
 	private String rating;
 
 	@Column(name="release_year")
 	private Short releaseYear;
 
 	@Column(name="rental_duration")
+	@JsonIgnore
 	private byte rentalDuration;
 
 	@Column(name="rental_rate")
+	@JsonIgnore
 	private BigDecimal rentalRate;
 
 	@Column(name="replacement_cost")
+	@JsonIgnore
 	private BigDecimal replacementCost;
 
 	@Column(name="title")
@@ -63,19 +70,23 @@ public class Film extends EntityBase<Film> implements Serializable {
 	//bi-directional many-to-one association to Language
 	@ManyToOne
 	@JoinColumn(name="language_id")
+	@JsonIgnore
 	private Language language;
 
 	//bi-directional many-to-one association to Language
 	@ManyToOne
 	@JoinColumn(name="original_language_id")
+	@JsonIgnore
 	private Language languageVO;
 
 	//bi-directional many-to-one association to FilmActor
 	@OneToMany(mappedBy="film")
+	@JsonIgnore
 	private List<FilmActor> filmActors;
 
 	//bi-directional many-to-one association to FilmCategory
 	@OneToMany(mappedBy="film")
+	@JsonIgnore
 	private List<FilmCategory> filmCategories;
 
 	public Film() {
@@ -85,16 +96,20 @@ public class Film extends EntityBase<Film> implements Serializable {
 		super();
 		this.filmId = filmId;
 	}
-
-	public Film(int filmId, String title, String description, Short releaseYear, Language language) {
+	
+	public Film(int filmId,String description, @PastOrPresent Timestamp lastUpdate, 
+			byte rentalDuration, BigDecimal rentalRate,
+			BigDecimal replacementCost, String title, Language language) {
 		super();
 		this.filmId = filmId;
+		this.lastUpdate = lastUpdate;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.replacementCost = replacementCost;
 		this.title = title;
-		this.description = description;
-		this.releaseYear = releaseYear;
-		this.language = language;		
+		this.language = language;
+		this.description=description;
 	}
-
 
 	public int getFilmId() {
 		return this.filmId;
