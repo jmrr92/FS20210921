@@ -1,5 +1,42 @@
-{"properties": [{
-  "name": "eureka.client.serviceUrl.defaultZone",
-  "type": "java.lang.String",
-  "description": "A description for 'eureka.client.serviceUrl.defaultZone'"
-}]}
+{"properties": [
+  {
+    "name": "eureka.client.serviceUrl.defaultZone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.client.serviceUrl.defaultZone'"
+  },
+  {
+    "name": "spring.boot.admin.client.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.boot.admin.client.url'"
+  },
+  {
+    "name": "management.security.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'management.security.enabled'"
+  },
+  {
+    "name": "management.endpoints.web.exposure.include",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.web.exposure.include'"
+  },
+  {
+    "name": "management.endpoints.health.sensitive",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.health.sensitive'"
+  },
+  {
+    "name": "info.app.name",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.name'"
+  },
+  {
+    "name": "info.app.description",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.description'"
+  },
+  {
+    "name": "info.app.version",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.version'"
+  }
+]}

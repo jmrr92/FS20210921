@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.function.ServerRequest;
 
+import com.example.application.proxies.CatalogoProxy;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.Categoria;
+import com.example.domains.entities.dtos.FilmShort;
 
 import lombok.Data;
 
@@ -20,8 +25,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -95,33 +103,53 @@ public class DemosResource {
 		Date ini = new Date();
 		for(int i= 0; i++ < id*1000; r = redisValue.increment(ME_GUSTA_CONT));
 		return "Llevas " + r + ". Tardo " + ((new Date()).getTime() - ini.getTime()) + " ms.";
-	}
-	
+	}	
+
 	@Autowired
+	@Qualifier("directo")
 	RestTemplate rest;
 	
-	@Data
-	public static class Categoria {
-		private int id;
-		private String categoria;
-	}
+	@Autowired
+	@Qualifier("balanceado")
+	RestTemplate restLB;
+	
+	@Autowired
+	CatalogoProxy proxy;
 	
 	@GetMapping("/categorias")
-	public List<Categoria> traeDatos(){
-		ResponseEntity<List<Categoria>> response = rest.exchange("http://localhost:8010/categorias", HttpMethod.GET,
-				HttpEntity.EMPTY,
-				new ParameterizedTypeReference<List<Categoria>>() {});
-		return response.getBody();
+	public List<Categoria> traeDatos() {
+//		ResponseEntity<List<Categoria>> response = rest.exchange("http://localhost:8010/categorias", 
+//				HttpMethod.GET,
+//				HttpEntity.EMPTY, 
+//				new ParameterizedTypeReference<List<Categoria>>() {}
+//		);
+//		return response.getBody();
+		return proxy.getCategorias();
 	}
 	
 	@GetMapping("/categorias/{id}")
-	public Categoria traeDatos(@PathVariable int id){
-		return rest.getForObject("http://host.docker.internal:8010/categorias/{id}", Categoria.class, id);
+	public Categoria traeDatos(@PathVariable int id) {
+//		return rest.getForObject("http://host.docker.internal:8010/categorias/{id}", Categoria.class, id);
+		return proxy.getCategoria(id);
 	}
 	
-	@GetMapping("/servicio")
-	public String traeHateoas() {
-		return rest.getForObject("lb://catalogo-service/", String.class);
+	@GetMapping("/categorias/{id}/pelis")
+	public List<FilmShort> traePelis(@PathVariable int id) {
+//		return rest.getForObject("http://host.docker.internal:8010/categorias/{id}", Categoria.class, id);
+		return proxy.getPeliculasDeLaCategoria(id);
 	}
-
+	
+	
+	@GetMapping("/directo")
+	public String traeDirecto() {
+		return rest.getForObject("http://host.docker.internal:8010/", String.class);
+	}
+	
+	
+	@GetMapping("/balanceado")
+	public String traeBalanceado() {
+//		return restLB.getForObject("lb://catalogo-service/", String.class);
+		return proxy.getRaiz();
+	}
+	
 }
