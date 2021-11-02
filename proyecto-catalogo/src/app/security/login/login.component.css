@@ -1,0 +1,7 @@
+:host-context(.navbar-dark) small {
+  color: white;
+}
+
+input{
+  color: rgb(0, 212, 142);
+}
