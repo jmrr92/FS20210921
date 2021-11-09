@@ -21,7 +21,6 @@ const routes: Routes = [
   { path: 'contactos/:id/edit', component: ContactosEditComponent },
   { path: 'contactos/:id', component: ContactosViewComponent },
   { path: 'contactos/:id/:kk', component: ContactosViewComponent },
-  { path: 'antonie/hasted', redirectTo: '/contactos/27'},
   { path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule)},
   { path: 'registro', component: RegisterUserComponent },
   { path: '404.html', component: PageNotFoundComponent },
